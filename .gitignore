@@ -49,3 +49,5 @@ app.*.map.json
 .vscode/
 
 firebase_app_id_file.json
+
+google-services.json
