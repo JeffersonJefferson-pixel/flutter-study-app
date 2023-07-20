@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/configs/themes/app_colors.dart';
 import 'package:flutter_study_app/configs/themes/ui_parameteres.dart';
 
 TextStyle cardTitles(BuildContext context) => TextStyle(
@@ -10,3 +11,6 @@ TextStyle cardTitles(BuildContext context) => TextStyle(
     );
 
 const detailText = TextStyle(fontSize: 12);
+
+const headerText = TextStyle(
+    fontSize: 22, fontWeight: FontWeight.w700, color: onSurfaceTextColor);

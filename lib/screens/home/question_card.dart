@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_study_app/configs/themes/app_dark_theme.dart';
+import 'package:flutter_study_app/configs/themes/app_icons.dart';
 import 'package:flutter_study_app/configs/themes/custom_text_styles.dart';
 import 'package:flutter_study_app/configs/themes/ui_parameteres.dart';
 import 'package:flutter_study_app/models/question_paper_model.dart';
@@ -112,14 +113,14 @@ class QuestionCard extends StatelessWidget {
                       vertical: 12,
                       horizontal: 26,
                     ),
-                    child: const Icon(
-                      Icons.wine_bar,
-                    ),
                     decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(cardBorderRadius),
                             bottomRight: Radius.circular(cardBorderRadius))),
+                    child: const Icon(
+                      AppIcons.trophyOutline,
+                    ),
                   ),
                 ))
           ],
