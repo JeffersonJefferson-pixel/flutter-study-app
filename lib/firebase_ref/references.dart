@@ -13,4 +13,6 @@ DocumentReference answerRF(
         {required DocumentReference questionRef, String? answerId}) =>
     questionRef.collection("answers").doc(answerId);
 
+final userRF = fireStore.collection("users");
+
 Reference get firebaseStorage => FirebaseStorage.instance.ref();

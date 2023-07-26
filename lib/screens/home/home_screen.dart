@@ -11,7 +11,6 @@ import 'package:flutter_study_app/widgets/app_circle_button.dart';
 import 'package:flutter_study_app/widgets/content_area.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeScreen extends GetView<MyZoomDrawerController> {
   const HomeScreen({Key? key}) : super(key: key);
