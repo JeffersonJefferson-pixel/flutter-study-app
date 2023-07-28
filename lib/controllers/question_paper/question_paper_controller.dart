@@ -2,6 +2,7 @@ import 'package:flutter_study_app/app_logger.dart';
 import 'package:flutter_study_app/controllers/auth_controller.dart';
 import 'package:flutter_study_app/firebase_ref/references.dart';
 import 'package:flutter_study_app/models/question_paper_model.dart';
+import 'package:flutter_study_app/screens/question/questions_screen.dart';
 import 'package:flutter_study_app/service/firebase_storage_service.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -39,17 +40,16 @@ class QuestionPaperController extends GetxController {
 
   void navigateToQuestions(
       {required QuestionPaperModel paper, bool tryAgain = false}) {
-    AuthController _authController = Get.find();
-    if (_authController.isLoggedIn()) {
+    AuthController authController = Get.find();
+    if (authController.isLoggedIn()) {
       if (tryAgain) {
         Get.back();
         //Get.offNamed(page);
       } else {
-        // Get.toNamed();
+        Get.toNamed(QuestionsScreen.routeName, arguments: paper);
       }
     } else {
-      print('title is ${paper.title}');
-      _authController.showLoginAlertDialog();
+      authController.showLoginAlertDialog();
     }
   }
 }
