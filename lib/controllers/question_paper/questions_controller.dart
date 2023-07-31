@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_study_app/firebase_ref/loading_status.dart';
@@ -9,7 +11,15 @@ class QuestionsController extends GetxController {
   final loadingStatus = LoadingStatus.loading.obs;
   late QuestionPaperModel questionPaperModel;
   final allQuestions = <Questions>[];
+  final questionIndex = 0.obs;
+  bool get isFirstQuestion => !(questionIndex.value > 0);
+  bool get isLastQuestion => questionIndex.value >= allQuestions.length - 1;
   Rxn<Questions> currentQuestion = Rxn<Questions>();
+
+  // timer
+  Timer? _timer;
+  int remainSeconds = 1;
+  final time = '00.00'.obs;
 
   @override
   void onReady() {
@@ -64,6 +74,24 @@ class QuestionsController extends GetxController {
 
   void selectAnswer(String? answer) {
     currentQuestion.value!.selectedAnswer = answer;
-    update();
+    update(['answers_list']);
   }
+
+  void nextQuestion() {
+    if (questionIndex.value >= allQuestions.length - 1) {
+      return;
+    }
+    questionIndex.value++;
+    currentQuestion.value = allQuestions[questionIndex.value];
+  }
+
+  void prevQuestion() {
+    if (questionIndex.value <= 0) {
+      return;
+    }
+    questionIndex.value--;
+    currentQuestion.value = allQuestions[questionIndex.value];
+  }
+
+  _startTimer(int seconds) {}
 }
