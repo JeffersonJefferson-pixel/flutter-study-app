@@ -5,30 +5,42 @@ import 'package:flutter_study_app/screens/home/home_screen.dart';
 import 'package:flutter_study_app/screens/introduction/introduction.dart';
 import 'package:flutter_study_app/screens/login/login_screen.dart';
 import 'package:flutter_study_app/screens/question/questions_screen.dart';
+import 'package:flutter_study_app/screens/question/test_overview_screen.dart';
 import 'package:flutter_study_app/screens/splash/splash_screen.dart';
 import 'package:get/get.dart';
 
 class AppRoutes {
   static List<GetPage> routes() => [
-        GetPage(name: "/", page: () => const SplashScreen()),
         GetPage(
-            name: "/introduction", page: () => const AppIntroductionScreen()),
+          name: "/",
+          page: () => const SplashScreen(),
+        ),
         GetPage(
-            name: "/home",
-            page: () => const HomeScreen(),
-            binding: BindingsBuilder(() {
-              Get.put(QuestionPaperController());
-              Get.put(MyZoomDrawerController());
-            })),
+          name: "/introduction",
+          page: () => const AppIntroductionScreen(),
+        ),
+        GetPage(
+          name: "/home",
+          page: () => const HomeScreen(),
+          binding: BindingsBuilder(() {
+            Get.put(QuestionPaperController());
+            Get.put(MyZoomDrawerController());
+          }),
+        ),
         GetPage(
           name: LoginScreen.routeName,
           page: () => const LoginScreen(),
         ),
         GetPage(
-            name: QuestionsScreen.routeName,
-            page: () => const QuestionsScreen(),
-            binding: BindingsBuilder(() {
-              Get.put(QuestionsController());
-            }))
+          name: QuestionsScreen.routeName,
+          page: () => const QuestionsScreen(),
+          binding: BindingsBuilder(() {
+            Get.put<QuestionsController>(QuestionsController());
+          }),
+        ),
+        GetPage(
+          name: TestOverviewScreen.routeName,
+          page: () => const TestOverviewScreen(),
+        )
       ];
 }

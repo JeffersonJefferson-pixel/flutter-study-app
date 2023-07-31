@@ -4,12 +4,14 @@ import 'package:flutter_study_app/configs/themes/custom_text_styles.dart';
 import 'package:flutter_study_app/configs/themes/ui_parameteres.dart';
 import 'package:flutter_study_app/controllers/question_paper/questions_controller.dart';
 import 'package:flutter_study_app/firebase_ref/loading_status.dart';
+import 'package:flutter_study_app/screens/question/test_overview_screen.dart';
 import 'package:flutter_study_app/widgets/common/background_decoration.dart';
 import 'package:flutter_study_app/widgets/common/custom_app_bar.dart';
 import 'package:flutter_study_app/widgets/common/main_button.dart';
 import 'package:flutter_study_app/widgets/common/question_placeholder.dart';
 import 'package:flutter_study_app/widgets/content_area.dart';
 import 'package:flutter_study_app/widgets/questions/answer_card.dart';
+import 'package:flutter_study_app/widgets/questions/countdown_timer.dart';
 import 'package:get/get.dart';
 
 class QuestionsScreen extends GetView<QuestionsController> {
@@ -20,6 +22,7 @@ class QuestionsScreen extends GetView<QuestionsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: CustomAppBar(
         leadingWidget: Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -31,7 +34,12 @@ class QuestionsScreen extends GetView<QuestionsController> {
               ),
             ),
           ),
-          child: const Text('Timer'),
+          child: Obx(
+            () => CountdownTimer(
+              time: controller.time.value,
+              color: onSurfaceTextColor,
+            ),
+          ),
         ),
         showActionIcon: true,
         titleWidget: Obx(
@@ -125,7 +133,7 @@ class QuestionsScreen extends GetView<QuestionsController> {
                             child: MainButton(
                               onTap: () {
                                 controller.isLastQuestion
-                                    ? Container()
+                                    ? Get.toNamed(TestOverviewScreen.routeName)
                                     : controller.nextQuestion();
                               },
                               title: controller.isLastQuestion
