@@ -5,6 +5,7 @@ import 'package:flutter_study_app/controllers/question_paper/questions_controlle
 import 'package:flutter_study_app/screens/question/question_number_card.dart';
 import 'package:flutter_study_app/widgets/common/background_decoration.dart';
 import 'package:flutter_study_app/widgets/common/custom_app_bar.dart';
+import 'package:flutter_study_app/widgets/common/main_button.dart';
 import 'package:flutter_study_app/widgets/content_area.dart';
 import 'package:flutter_study_app/widgets/questions/answer_card.dart';
 import 'package:flutter_study_app/widgets/questions/countdown_timer.dart';
@@ -71,6 +72,18 @@ class TestOverviewScreen extends GetView<QuestionsController> {
                       itemCount: controller.allQuestions.length,
                     ))
                   ],
+                ),
+              ),
+            ),
+            ColoredBox(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              child: Padding(
+                padding: UIParameters.mobileScreenPadding,
+                child: MainButton(
+                  onTap: () {
+                    controller.complete();
+                  },
+                  title: 'Complete',
                 ),
               ),
             )

@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_study_app/firebase_ref/loading_status.dart';
 import 'package:flutter_study_app/firebase_ref/references.dart';
 import 'package:flutter_study_app/models/question_paper_model.dart';
+import 'package:flutter_study_app/screens/question/result_screen.dart';
 import 'package:get/get.dart';
 
 class QuestionsController extends GetxController {
@@ -113,7 +114,7 @@ class QuestionsController extends GetxController {
   _startTimer(int seconds) {
     const duration = Duration(seconds: 1);
     remainSeconds = seconds;
-    Timer.periodic(duration, (Timer timer) {
+    _timer = Timer.periodic(duration, (Timer timer) {
       if (remainSeconds == 0) {
         timer.cancel();
       } else {
@@ -125,5 +126,10 @@ class QuestionsController extends GetxController {
         remainSeconds--;
       }
     });
+  }
+
+  void complete() {
+    _timer!.cancel();
+    Get.offAndToNamed(ResultScreen.routeName);
   }
 }
